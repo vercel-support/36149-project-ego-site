@@ -15,12 +15,12 @@ function MyApp({ Component, pageProps }) {
   return <NotificationProvider>
     <Head>
       <link rel="shortcut icon" href="/favicon.png" />
+      <title>{`EGO TRẦN - music, life, </code>`}</title>
     </Head>
     <NavTop />
     <Wrapper>
       <Component {...pageProps} />
     </Wrapper>
-    <Footer />
   </NotificationProvider>
 }
 

@@ -1,6 +1,10 @@
 // dependences
 import Link from 'next/link';
 
+// icons
+import IconCode from '../ui/icons/icon-code';
+import IconEmail from '../ui/icons/icon-email';
+
 // styles
 import styled from 'styled-components';
 const Nav = styled.div`
@@ -15,6 +19,15 @@ const NavApp = styled.div`
     font-size: 120%;
     font-weight: bold;
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    
+    & img {
+        max-width: 2rem;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+    }
 `;
 const NavMain = styled.div`
     flex-grow: 1;
@@ -27,19 +40,28 @@ const NavMain = styled.div`
 
     & a {
         color: white;
+        text-decoration: underline wavy;
     }
 `;
 
 export default function NavTop() {
     return <Nav>
         <Link href="/" passHref>
-            <NavApp>EGO' BLOG</NavApp>
+            <NavApp>
+                <img src="/favicon-transparent.png" alt="" />
+            </NavApp>
         </Link>
 
         <NavMain>
-            <Link href="/all-posts">All posts</Link>
-            <Link href="/about">About</Link>
-            <Link href="/contact">Contact</Link>
+            <Link href="/music">music</Link>
+            <Link href="/life">life</Link>
+            <Link href="/code">{`</code>`}</Link>
+            <a target="_self" href="mailto:lalala@dolalala.me">
+                <IconEmail className="stroke-white" />
+            </a>
+            <a target="_blank" href="https://github.com/egotr">
+                <IconCode className="stroke-white" />
+            </a>
         </NavMain>
     </Nav>
 }

@@ -1,40 +1,49 @@
-import Head from 'next/head';
-
-import PostBrief from '../components/post/post-brief';
+import Image from 'next/image';
 
 // styles
-import styled from 'styled-components';
-const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+import styled, { createGlobalStyle } from 'styled-components';
+const GlobalStyles = createGlobalStyle`
+    #wrapper {
+        display: flex;
+        align-items: center;
+    }
 `;
+const Container = styled.div`
+    width: clamp(200px, 50%, 300px);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-import { getLatestPosts } from '../helpers/markdown';
+    & * {
+        text-align: center;
+    }
 
-export default function Home({ latestPosts }) {
-  return (
-    <>
-      <Head>
-        <title>Home - Ego Trần</title>
-      </Head>
+    & h1 {
+        color: var(--color-app-primary);
+    }
+    
+    & code {
+        background-color: #f9f9f9;
+        color: var(--color-app-primary);
+        padding: 5px;
+        border: solid 1px #ddd;
+        border-radius: 5px;
+    }
+`;
+export default function About() {
+    return <>
+        <GlobalStyles />
+        <Container>
+            <Image
+                alt=""
+                src="/favicon.png"
+                width={300}
+                height={300}
+            />
 
-      <Container>
-        {latestPosts.map(post =>
-          <PostBrief key={post.alias} data={post} />
-        )}
-      </Container>
+            <h1>EGO TRẦN</h1>
+            <div>A <code>coder</code> who loves to <code>sing</code></div>
+        </Container>
     </>
-  )
-}
-
-export async function getStaticProps(context) {
-  const latestPosts = getLatestPosts();
-
-  return {
-    props: {
-      latestPosts
-    },
-    revalidate: 86400 // 1 day
-  }
 }
